@@ -1,0 +1,161 @@
+# Clase 5 - Tipo de datos - Variables
+
+## Variables
+
+Las variables almacenan valores que se pueden usar y cambiar a lo largo de su código.
+
+Crear y **declarar** una variable tiene la siguiente sintaxis **[palabra clave] [nombre]** . Se compone de las dos partes:
+
+- palabra **clave** Las palabras clave pueden ser **let** o **var** y el nombre.
+
+✅La palabra clave `let`se introdujo en ES6 y le da a su variable el llamado *alcance de bloque* . Se recomienda que utilice más `let` que  `var`.
+
+### Trabajar con variables
+
+1. **Declarar una variable** . Declaremos una variable usando la `let`palabra clave:
+   `myVariable`ahora ha sido declarado usando la `let`palabra clave. Actualmente no tiene valor.
+
+```jsx
+let myVariable;
+```
+
+1. **Asigne un valor** . Almacene un valor en una variable con el `=`operador, seguido del valor esperado.
+
+```jsx
+myVariable = 123;
+```
+
+> Nota: el uso de `=`en esta lección significa que hacemos uso de un "operador de asignación", utilizado para establecer un valor a una variable. No denota igualdad.
+
+1. **Refactorizar** . Reemplace su código con la siguiente declaración.
+
+```jsx
+let myVariable = 123;
+```
+
+Lo anterior se denomina *inicialización explícita* cuando se declara una variable y se le asigna un valor al mismo tiempo.
+
+1. **Cambia el valor de la variable** . Cambie el valor de la variable de la siguiente manera:
+
+```jsx
+myVariable = 321;
+```
+
+Una vez que se declara una variable, puede cambiar su valor en cualquier punto de su código con el `=`operador y el nuevo valor.
+
+¡Intentalo! Puede escribir JavaScript directamente en su navegador. Abra una ventana del navegador y vaya a Herramientas para desarrolladores. En la consola, encontrará un aviso; escriba `let myVariable = 123`, presione regresar, luego escriba `myVariable`. ¿Lo que sucede? Tenga en cuenta que aprenderá más sobre estos conceptos en lecciones posteriores.
+
+## Const
+
+La declaración e inicialización de una constante sigue los mismos conceptos que una variable, con la excepción de la `const`palabra clave. Las constantes normalmente se declaran con todas las letras mayúsculas.
+
+```jsx
+const MY_VARIABLE = 123;
+```
+
+Las constantes son similares a las variables, con dos excepciones:
+
+- **Debe tener un valor** . Las constantes deben inicializarse o se producirá un error al ejecutar el código.
+- **La referencia no se puede cambiar** . La referencia de una constante no se puede cambiar una vez inicializada, o se producirá un error al ejecutar el código. Veamos dos ejemplos:
+
+**Valor sencillo** . NO está permitido lo siguiente:
+
+```jsx
+const PI = 3;
+PI = 4; // no permitido
+```
+
+
+En JavaScript, **el alcance o scope** se refiere a la visibilidad de una variable o cómo se puede usar después de declararla. El alcance de una variable depende de la palabra clave que se utilizó para declararla.
+
+Los tres tipos de alcance son alcance global, alcance de función y alcance de bloque. Antes de ES6 (2015), JavaScript solo tenía alcance global y alcance de función con la varpalabra clave. Se introdujo ES6 lety constque permite Block Scope en JavaScript.
+
+**Alcance global:** las variables declaradas fuera de cualquier función o llaves '{}' tienen alcance global y se puede acceder a ellas desde cualquier lugar dentro del mismo código Javascript. vary lettodos constproporcionan este alcance.
+
+**Alcance de la función:** las variables declaradas dentro de una función solo se pueden usar dentro de esa misma función. Fuera de esa función, no están definidos. vary lettodos constproporcionan este alcance.
+
+**Alcance del bloque:** un bloque es cualquier parte del código JavaScript delimitada por '{}'. No se puede acceder a las variables declaradas dentro de un bloque fuera de ese bloque. Este alcance solo lo proporcionan las palabras clave lety const. Si declara una variable dentro de un bloque usando la varpalabra clave, NO tendrá alcance de bloque.
+
+## Tipos de datos
+
+Las variables pueden almacenar muchos tipos diferentes de valores, como números y texto. Estos diversos tipos de valores se conocen como el **tipo de datos** . Los tipos de datos son una parte importante del desarrollo de software porque ayudan a los desarrolladores a tomar decisiones sobre cómo se debe escribir el código y cómo se debe ejecutar el software. Además, algunos tipos de datos tienen características únicas que ayudan a transformar o extraer información adicional en un valor.
+
+✅Tipos primitivos
+En JavaScript, una primitiva (valor primitivo, tipo de datos primitivo) son datos que no son un objeto y no tienen métodos ni propiedades. Hay 7 tipos de datos primitivos:
+
+`string`
+`number`
+`bigint`
+`boolean`
+`undefined`
+`Symbol`
+`null`
+
+### Número
+
+En la sección anterior, el valor de `myVariable`era un tipo de dato numérico.
+
+`let myVariable = 123;`
+
+Las variables pueden almacenar todo tipo de números, incluidos decimales o números negativos. Los números también se pueden usar con operadores aritméticos, que se tratan en la siguiente sección.
+
+### Operadores aritméticos
+
+| Símbolo | Descripción | Ejemplo |
+
+| + | Adición : Calcula la suma de dos números | 1 + 2 // se espera 3 |
+| - | Resta : Calcula la diferencia de dos números | 1 - 2 // se espera -1 |
+| _ | Multiplicación : Calcula el producto de dos números | 1 _ 2 //se espera 2 |
+| / | División : Calcula el cociente de dos números | 1 / 2 //se espera 0.5 |
+| % | Resto : Calcula el resto de la división de dos números | 50%3 //2 |
+
+### Strings
+
+Las cadenas son conjuntos de caracteres que residen entre comillas simples o dobles.
+
+- `'Esto es un string'`
+- `"Esto también es un string"`
+- `let myString = 'Este es un String almacenado en una variable';`
+
+**Recuerde usar comillas cuando escriba una cadena, de lo contrario, JavaScript asumirá que es un nombre de variable.**
+
+### Formato de String
+
+Las cadenas son texto y requerirán formato de vez en cuando.
+
+Para **concatenar** dos o más cadenas, o unirlas, use el `+`operador.
+
+```jsx
+let myString1 = "Hello";
+let myString2 = "World";
+
+myString1 + myString2 + "!"; //HelloWorld!
+myString1 + " " + myString2 + "!"; //Hello World!
+myString1 + ", " + myString2 + "!"; //Hello, World!
+```
+
+¿Por qué `1 + 1 = 2`en JavaScript, pero `'1' + '1' = 11?`piénsalo? ¿Sobre qué `'1' + 1`?
+
+Template Literals **Los literales de plantilla** son otra forma de formatear cadenas, excepto que en lugar de comillas, se usa el acento grave. Todo lo que no sea texto sin formato debe colocarse dentro de marcadores de posición `${ }`. Esto incluye cualquier variable que pueda ser una cadena.
+
+```jsx
+let myString1 = "Hello";
+let myString2 = "World";
+
+`${myString1} ${myString2}!` //Hello World!
+`${myString1}, ${myString2}!`; //Hello, World!
+```
+
+Puede lograr sus objetivos de formato con cualquier método, pero los literales de plantilla respetarán los espacios y los saltos de línea.
+
+### Boolean
+
+Los valores booleanos solo pueden tener dos valores: `true`o `false`. Los booleanos pueden ayudar a tomar decisiones sobre qué líneas de código deben ejecutarse cuando se cumplen ciertas condiciones. En muchos casos, [los operadores] ayudan a establecer el valor de un booleano y, a menudo, notará y escribirá variables que se inicializan o sus valores se actualizan con un operador.
+
+- `let myTrueBool = true`
+- `let myFalseBool = false`
+
+✅Una variable puede considerarse 'veraz' si se evalúa como booleana `true`. Curiosamente, en JavaScript, [todos los valores son verdaderos a menos que se definan como falsos](https://developer.mozilla.org/docs/Glossary/Truthy) .
+
+
+**El objeto** JavaScript es una estructura de datos que nos permite tener pares clave-valor; entonces podemos tener claves distintas y cada clave se asigna a un valor que puede ser de cualquier tipo de datos JavaScript. Comparándolo con un objeto del mundo real, un bolígrafo es un objeto con varias propiedades como color, diseño, material del que está hecho, etc. De la misma manera, los objetos JavaScript pueden tener propiedades que definen sus características.

@@ -1,0 +1,113 @@
+# Arrays y Loops    (matrices y bucles)
+
+## arreglos
+
+Trabajar con datos es una tarea común para cualquier lenguaje, y es una tarea mucho más fácil cuando los datos están organizados en un formato estructural, como matrices. Con las matrices, los datos se almacenan en una estructura similar a una lista. Una de las principales ventajas de las matrices es que puede almacenar diferentes tipos de datos en una matriz.
+
+✅¡Las matrices están a nuestro alrededor! ¿Puedes pensar en un ejemplo de la vida real de una matriz, como una matriz de paneles solares?            
+
+La sintaxis de una matriz es un par de corchetes.
+
+```
+let myArray = [];
+```
+
+Esta es una matriz vacía, pero las matrices se pueden declarar ya pobladas con datos. Varios valores en una matriz están separados por una coma.
+
+```
+let saborHelados = ["Chocolate", "Frutilla", "Vanilla", "Pistachio", "Limón"];
+```
+
+A los valores de la matriz se les asigna un valor único llamado **índice** , un número entero que se asigna en función de su distancia desde el comienzo de la matriz. En el ejemplo anterior, el valor de cadena "Chocolate" tiene un índice de 0 y el índice de "Limón" es 4. Utilice el índice entre corchetes para recuperar, cambiar o insertar valores de matriz.
+
+✅¿Te sorprende que las matrices comiencen en el índice cero? En algunos lenguajes de programación, los índices comienzan en 1. Hay una historia interesante en torno a esto, que puede [leer en Wikipedia](https://en.wikipedia.org/wiki/Zero-based_numbering) .
+
+```
+let saborHelados = ["Chocolate", "Frutilla", "Vanilla", "Pistachio", "Limón"];
+saborHelado[2]; //"Vanilla"
+```
+
+Puede aprovechar el índice para cambiar un valor, como este:
+
+```
+saborHelados[4] = "Crema Cookie"; //Cambia "Limón" a "Crema Cookie"
+```
+
+Y puede insertar un nuevo valor en un índice dado como este:
+
+```
+saborHelados[5] = "Cereza"; //Añade "Cereza"
+```
+
+✅Una forma más común de enviar valores a una matriz es mediante el uso de operadores de matriz como array.push()
+
+Para averiguar cuántos elementos hay en una matriz, use la `length`propiedad.
+
+```
+let saborHelados = ["Chocolate", "frutilla", "Vanilla", "Pistachio", "Limón"];
+saborHelados.length; //5
+```
+
+✅¡Inténtalo tú mismo! Use la consola de su navegador o tu IDE para crear y manipular una matriz de su propia creación.
+
+## Bucles loops
+
+Los bucles nos permiten realizar tareas repetitivas o **iterativas** y pueden ahorrar mucho tiempo y código. Cada iteración puede variar en sus variables, valores y condiciones. Hay diferentes tipos de bucles en JavaScript, y todos tienen pequeñas diferencias, pero esencialmente hacen lo mismo: bucle sobre datos.
+
+- [For Loop](../demoClase8/img/for.jpg)
+
+
+El ciclo `for`requiere 3 partes para iterar:
+
+- `counter`
+    
+    Una variable que normalmente se inicializa con un número que cuenta el número de iteraciones
+    
+- `conditionfalse`
+    
+    Expresión que usa operadores de comparación para hacer que el ciclo se detenga cuando
+    
+- `iteration-expression`
+    
+    Se ejecuta al final de cada iteración, generalmente se usa para cambiar el valor del contador
+    
+
+```
+// Counting up to 10
+for (let i = 0; i < 10; i++) {
+  console.log(i);
+}
+```
+
+✅Ejecute este código en una consola del navegador. ¿Qué sucede cuando realiza pequeños cambios en el contador, la condición o la expresión de iteración? ¿Puedes hacer que corra hacia atrás, creando una cuenta regresiva?
+
+### While bucle
+
+A diferencia de la sintaxis del bucle `for`, los bucles `while` solo requieren una condición que detenga el bucle cuando la condición se convierta en `false`. Las condiciones en los bucles suelen depender de otros valores, como contadores, y deben gestionarse durante el bucle. Los valores iniciales para los contadores deben crearse fuera del bucle y cualquier expresión para cumplir una condición, incluido el cambio del contador, debe mantenerse dentro del bucle.
+
+```
+//Contar hasta 10
+let i = 0;
+while (i < 10) {
+ console.log(i);
+ i++;
+}
+```
+
+✅¿Por qué elegiría un bucle for frente a un bucle while? 17.000 espectadores tenían la misma pregunta en StackOverflow y algunas de las opiniones [podrían ser interesantes para usted](https://stackoverflow.com/questions/39969145/while-loops-vs-for-loops-in-javascript) .
+
+## Bucles y arreglos
+
+Las matrices se utilizan a menudo con bucles porque la mayoría de las condiciones requieren la longitud de la matriz para detener el bucle, y el índice también puede ser el valor del contador.
+
+```
+let saborHelados = ["Chocolate", "Frutilla", "Vanilla", "Pistachio", "Limón"];
+
+for (let i = 0; i < saborHelados.length; i++) {
+  console.log(saborHelados[i]);
+} //Termina cuando todos los sabores se muestran. 
+```
+
+✅Experimente recorriendo una matriz creada por usted mismo en la consola de su navegador o IDE.
+
+[def]: ../demoClase8/img/for.jpg

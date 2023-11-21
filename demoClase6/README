@@ -1,0 +1,121 @@
+# Clase 6 - Funciones y Métodos
+
+
+**Comparaciones de igualdad**
+Los operadores de comparación se utilizan en declaraciones lógicas para determinar la igualdad o diferencia entre variables o valores. Los operadores de comparación se pueden utilizar en declaraciones condicionales para comparar valores y tomar medidas según el resultado.
+
+**Ejemplos**
+En javascript, el operador **==** realiza la conversión de tipo de los operandos antes de la comparación, mientras que el operador **===** compara los valores y los tipos de datos de los operandos.
+
+
+### Funciones 
+
+En esencia, una función es un bloque de código que podemos ejecutar a pedido. Esto es perfecto para escenarios en los que necesitamos realizar la misma tarea varias veces; en lugar de duplicar la lógica en varias ubicaciones (lo que dificultaría la actualización cuando llegue el momento), podemos centralizarla en una ubicacióny llamarla cada vez que necesitemos que se realice la operación; ¡incluso puede llamar funciones desde otras funciones!
+
+Igual de importante es la capacidad de nombrar una función. Si bien esto puede parecer trivial, el nombre proporciona una forma rápida de documentar una sección de código. Podría pensar en esto como una etiqueta en un botón. Si hago clic en un botón que dice "Cancelar temporizador", sé que el reloj dejará de funcionar.
+
+## Creando y llamando a una función
+
+La sintaxis de una función es similar a la siguiente:
+
+```
+function nombreFuncion() { // function definition
+ // cuerpo de la función
+}
+```
+
+Si quisiera crear una función para mostrar un saludo, podría verse así:
+
+```
+function mostrarSaludo() {
+  console.log('Hello, world!');
+}
+```
+
+Siempre que queramos llamar (o invocar) nuestra función, usamos el nombre de la función seguido de `()`. Vale la pena señalar el hecho de que nuestra función se puede definir antes o después de que decidamos llamarla; el compilador de JavaScript lo encontrará por usted.
+
+```
+// Llamando a nuestra función
+mostrarSaludo();
+```
+### Mejores prácticas de funciones
+
+Hay un puñado de mejores prácticas para tener en cuenta al crear funciones
+
+- Como siempre, use nombres descriptivos para que sepa lo que hará la función.
+- Usa **camelCasing** para combinar palabras   
+- Mantenga sus funciones enfocadas en una tarea específica
+
+## Pasar información a una función.
+
+Para hacer que una función sea más reutilizable, a menudo querrá pasarle información. Si consideramos nuestro `mostrarSaludo`tejemplo anterior, solo mostrará **Hello, world!** . No es la función más útil que uno podría crear. Si queremos hacerlo un poco más flexible, como permitir que alguien especifique el nombre de la persona a saludar, podemos agregar un **parámetro** . Un parámetro (a veces también llamado **argumento** ), es información adicional enviada a una función.
+
+Los parámetros se enumeran en la parte de definición entre paréntesis y están separados por comas de la siguiente manera:
+
+```
+function nombre(param, param2, param3) {
+
+}
+```
+
+Podemos actualizar nuestro `mostrarSaludo`para aceptar un nombre y mostrarlo.
+
+```
+function mostrarSaludo(name) {
+  const mensaje = `Hello, ${name}!`;
+  console.log(mensaje);
+}
+```
+
+Cuando queremos llamar a nuestra función y pasar el parámetro, lo especificamos entre paréntesis.
+
+```
+mostrarSaludo('Floki');
+// mostrará "Hello, Floki!" cuando se ejecute
+```
+
+## Valores predeterminados
+
+Podemos hacer que nuestra función sea aún más flexible agregando más parámetros. Pero, ¿qué pasa si no queremos exigir que se especifiquen todos los valores? Siguiendo con nuestro ejemplo de saludo, podríamos dejar el nombre como se requiere (necesitamos saber a quién estamos saludando), pero queremos permitir que el saludo en sí se personalice como se desee. Si alguien no quiere personalizarlo, proporcionamos un valor predeterminado en su lugar. Para proporcionar un valor predeterminado a un parámetro, lo establecemos de la misma manera que establecemos un valor para una variable - `parameterName = 'defaultValue'`. Para ver un ejemplo completo:
+
+```
+function mostrarSaludo(nombre, saludo='Hello') {
+  console.log(`${saludo}, ${nombre}`);
+}
+```
+
+Cuando llamamos a la función, podemos decidir si queremos establecer un valor para `saludo`.
+
+```
+mostrarSaludo('Floki');
+// mostrará "Hello, Floki"
+
+mostrarSaludo('Floki', 'Hi');
+// mostrará "Hi, Floki"
+```
+
+## Valores devueltos
+Hasta ahora, la función que construimos siempre se mostrará en la [consola]. A veces, esto puede ser exactamente lo que estamos buscando, especialmente cuando creamos funciones que llamarán a otros servicios. Pero, ¿qué pasa si quiero crear una función de ayuda para realizar un cálculo y devolver el valor para poder usarlo en otro lugar?
+
+Podemos hacer esto usando un **valor de retorno** . La función devuelve un valor de retorno, y puede almacenarse en una variable de la misma manera que podríamos almacenar un valor literal, como una cadena o un número.
+
+Si una función devuelve algo, entonces `return`se usa la palabra clave. La `return`palabra clave espera un valor o referencia de lo que se devuelve así:
+
+```
+return myVariable;
+```
+
+Podríamos crear una función para crear un mensaje de saludo y devolver el valor a la persona que llama
+
+```
+function crearMensajeSaludo(nombre) {
+  const mensaje = `Hello, ${nombre}`;
+  return mensaje;                        
+}
+```
+
+Al llamar a esta función almacenaremos el valor en una variable. Esto es muy parecido a como estableceríamos una variable en un valor estático (como `const nombre = 'Floki'`).
+
+```
+const mensajeSaludo = crearMensajeSaludo('Floki');
+```
