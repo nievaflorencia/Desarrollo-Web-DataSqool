@@ -1,0 +1,326 @@
+# clase 12 - Juego de mecanografía
+
+**Creando un juego usando eventos**
+
+## Programación impulsada por eventos
+
+Al crear una aplicación basada en navegador, proporcionamos una interfaz gráfica de usuario (GUI - Interfaz Gráfica de Usuario) para que el usuario la use cuando interactúe con lo que hemos creado. La forma más común de interactuar con el navegador es haciendo clic y escribiendo en varios elementos. El desafío al que nos enfrentamos como desarrolladores es que no sabemos cuándo van a realizar estas operaciones.
+
+[La programación basada en eventos](https://en.wikipedia.org/wiki/Event-driven_programming) es el nombre del tipo de programación que necesitamos hacer para crear nuestra GUI. Si desglosamos un poco esta frase, vemos que la palabra central aquí es **evento** . [Evento](https://www.merriam-webster.com/dictionary/event) , según Merriam-Webster, se define como "algo que sucede". Esto describe perfectamente nuestra situación. Sabemos que va a pasar algo por lo que queremos ejecutar algún código en respuesta, pero no sabemos cuándo ocurrirá.
+
+La forma en que marcamos una sección de código que queremos ejecutar es creando una función. Cuando pensamos en [la programación procedimental](https://en.wikipedia.org/wiki/Procedural_programming) , las funciones se llaman en un orden específico. Lo mismo sucederá con la programación basada en eventos. La diferencia es **cómo** se llamarán las funciones.
+
+Para manejar eventos (hacer clic en un botón, escribir, etc.), registramos **detectores de eventos** . Un detector de eventos es una función que escucha si ocurre un evento y se ejecuta en respuesta. Los detectores de eventos pueden actualizar la interfaz de usuario, realizar llamadas al servidor o cualquier otra cosa que deba hacerse en respuesta a la acción del usuario. Agregamos un detector de eventos usando [addEventListener](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener) y proporcionando una función para ejecutar.
+
+> **NOTA:** Vale la pena resaltar que existen numerosas formas de crear detectores de eventos. Puede usar funciones anónimas o crear funciones con nombre. Puede usar varios accesos directos, como configurar la clickpropiedad o usar addEventListener. En nuestro ejercicio nos vamos a centrar en addEventListener las funciones anónimas, ya que es probablemente la técnica más común que utilizan los desarrolladores web. También es el más flexible, ya que addEventListener funciona para todos los eventos, y el nombre del evento se puede proporcionar como parámetro.
+
+
+Hay [docenas de eventos](https://developer.mozilla.org/docs/Web/Events) disponibles para escuchar al crear una aplicación. Básicamente, todo lo que hace un usuario en una página genera un evento, lo que te da mucho poder para garantizar que obtengan la experiencia que deseas. Afortunadamente, normalmente solo necesitará un pequeño puñado de eventos. Aquí hay algunos comunes (incluidos los dos que usaremos al crear nuestro juego):
+- [clic](https://developer.mozilla.org/docs/Web/API/Element/click_event)
+    
+    : el usuario hizo clic en algo, generalmente un botón o un hipervínculo
+    
+- [menú contextual](https://developer.mozilla.org/docs/Web/API/Element/contextmenu_event)
+    
+    : el usuario hizo clic con el botón derecho del mouse
+    
+- [seleccionar](https://developer.mozilla.org/docs/Web/API/Element/select_event)
+    
+    : el usuario resaltó algún texto
+    
+- [entrada](https://developer.mozilla.org/docs/Web/API/Element/input_event)
+    
+    : el usuario ingresa un texto
+
+## Creando el juego
+
+Vamos a crear un juego para explorar cómo funcionan los eventos en JavaScript. Nuestro juego pondrá a prueba la habilidad de escritura de un jugador, que es una de las habilidades más subestimadas que todos los desarrolladores deberían tener. ¡Todos deberíamos estar practicando nuestra mecanografía! El flujo general del juego se verá así:
+
+- El jugador hace clic en el botón de inicio y se le presenta una cita para escribir
+- El jugador escribe la cita lo más rápido que puede en un cuadro de texto
+    - A medida que se completa cada palabra, se resalta la siguiente
+    - Si el jugador tiene un error tipográfico, el cuadro de texto se actualiza a rojo
+    - Cuando el jugador completa la cotización, se muestra un mensaje de éxito con el tiempo transcurrido
+
+**¡Construyamos nuestro juego y aprendamos sobre los eventos!**
+
+## Estructura de archivos
+
+Necesitaremos tres archivos en total: index.html , script.js y style.css . Comencemos por configurarlos para hacernos la vida un poco más fácil.
+
+Cree una nueva carpeta para su trabajo abriendo una ventana de consola o terminal y emitiendo el siguiente comando:
+
+```bash
+# Linux o macOS
+mkdir typing-game && cd typing-game
+
+# Windows
+md typing-game && cd typing-game
+```
+- Para abrir Visual Studio Code
+
+```bash
+code .
+```
+
+- Añade tres archivos:
+  - index.html
+  - script.js
+  - style.css
+
+## Crear la interfaz de usuario
+
+Si exploramos los requisitos, sabemos que necesitaremos algunos elementos en nuestra página HTML. Esto es algo así como una receta, donde necesitamos algunos ingredientes:
+
+- En algún lugar para mostrar lo que el usuario la escriba.
+- En algún lugar para mostrar cualquier mensaje, como un mensaje de éxito.
+- Un cuadro de texto para escribir
+- Un botón de inicio
+
+Cada uno de ellos necesitará ID para que podamos trabajar con ellos en nuestro JavaScript. También agregaremos referencias a los archivos CSS y JavaScript que vamos a crear.
+
+Cree un nuevo archivo llamado index.html . Agregue el siguiente HTML:
+
+```html
+<!-- inside index.html -->
+<html>
+<head>
+  <title>Typing game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Typing game!</h1>
+  <p>Practica tus habilidades de mecanografía con una cita. ¡Haga clic en **iniciar** para comenzar!</p>
+  <p id="quote"></p> <!--Aquí se mostrará tu cita  -->
+  <p id="message"></p> <!-- Esto mostrará cualquier mensaje de estado -->
+  <div>
+    <input type="text" aria-label="current word" id="typed-value" /> <!-- El cuadro de texto para escribir -->
+    <button type="button" id="start">Start</button> <!-- Para comenzar el juego -->
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+```
+
+## Iniciar la aplicacion
+
+Siempre es mejor desarrollar de forma iterativa para ver cómo se ven las cosas. Iniciemos nuestra aplicación. Existe una maravillosa extensión para Visual Studio Code llamada `Live Server` que alojará su aplicación localmente y actualizará el navegador cada vez que la guarde.
+
+- Instale Live Server
+- Una vez instalado, en Visual Studio Code, haga clic en Ctrl-Shift-P (o Cmd-Shift-P) para abrir la paleta de comandos.
+Escriba Live Server: Abrir con Live Server
+Live Server comenzará a alojar su aplicación
+Abra un navegador y navegue hasta https://localhost:5500
+
+**¡Ahora deberías ver la página que creaste!**
+
+Agreguemos algunas funciones.
+
+## Agrega el CSS
+
+Con nuestro HTML creado, agreguemos el CSS para el estilo principal. Necesitamos resaltar la palabra que el jugador debería escribir y colorear el cuadro de texto si lo que escribió es incorrecto. Haremos esto con dos clases.
+
+Cree un nuevo archivo llamado style.css y agregue la siguiente sintaxis.
+
+```css
+/* dentro de style.css */
+.highlight {
+  background-color: yellow;
+}
+
+.error {
+  background-color: lightcoral;
+  border: red;
+}
+```
+
+✅ Cuando se trata de CSS, puedes diseñar tu página como quieras. Tómate un poco de tiempo y haz que la página parezca más atractiva:
+
+- Elige una fuente diferente
+- Colorea los encabezados
+- Cambiar el tamaño de los elementos
+
+## Javascript
+Con nuestra interfaz de usuario creada, es hora de centrar nuestra atención en JavaScript que proporcionará la lógica. Vamos a dividir esto en unos pocos pasos:
+
+- Crea las constantes
+- Oyente de eventos para iniciar el juego.
+- Oyente de eventos para escribir
+
+Pero primero, cree un nuevo archivo llamado script.js .
+
+## Agrega las constantes
+Necesitaremos algunos elementos para hacernos la vida un poco más fácil a la hora de programar. Nuevamente, similar a una receta, esto es lo que necesitaremos:
+
+- Array con la lista de todas las citas.
+- Array vacío para almacenar todas las palabras de la cotización actual
+- Espacio para almacenar el índice de la palabra que el jugador está escribiendo actualmente.
+- La hora en que el jugador hizo clic en iniciar
+
+También vamos a querer referencias a los elementos de la interfaz de usuario:
+
+- El cuadro de texto ( **valor escrito** )
+- La visualización de citas ( **quote** )
+- El mensaje ( **mensaje** )
+
+```javascript
+// dentro de script.js
+// todas las citas
+const quotes = [
+    'Hazlo o no lo hagas. Pero no lo intentes.',
+    'El mejor profesor, el fracaso es.',
+    'Paciencia debes tener, mi joven padawan.',
+    'El miedo es el camino hacia el lado oscuro, el miedo lleva a la ira, la ira lleva al odio, el odio lleva al sufrimiento, el sufrimiento al lado oscuro.',
+    'Transmite siempre lo que has aprendido.',
+    'Difícil de ver es. Siempre en movimiento el futuro está.',
+    'Imposible nada es. Difícil, muchas cosas son.',
+];
+
+// Almacenar la lista de palabras y el índice de la palabra que el jugador está escribiendo actualmente
+let words = [];
+let wordIndex = 0;
+// Tiempo de inicio
+let startTime = Date.now();
+// Elementos de página
+const quoteElement = document.getElementById('quote');
+const messageElement = document.getElementById('message');
+const typedValueElement = document.getElementById('typed-value');
+```
+
+✅ Continúe y agregue más citas a su juego
+
+## Agregar lógica de inicio
+
+Para comenzar el juego, el jugador hará clic en iniciar. Por supuesto, no sabemos cuándo harán clic en iniciar. Aquí es donde entra en juego un [event listener](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener). 
+Un detector de eventos nos permitirá escuchar si ocurre algo (un evento) y ejecutar código en respuesta. En nuestro caso, queremos ejecutar código cuando el usuario hace clic en iniciar.
+
+Cuando el usuario hace clic en Inicio , debemos seleccionar una cita, configurar la interfaz de usuario y configurar el seguimiento de la palabra y el tiempo actuales. A continuación se muestra el JavaScript que deberá agregar; Lo discutimos justo después del bloque del guión.
+
+```javascript
+// Al final de script.js
+document.getElementById('start').addEventListener('click', () => {
+  // Obten una cita
+  const quoteIndex = Math.floor(Math.random() * quotes.length);
+  const quote = quotes[quoteIndex];
+  // Pon la cita en una serie de palabras
+  words = quote.split(' ');
+  // Restablece el índice de palabras para el seguimiento
+  wordIndex = 0;
+
+  // UI Actualizaciones
+  // Crea un array de elementos span para establecer una clase
+  const spanWords = words.map(function(word) { return `<span>${word} </span>`});
+  // Convierta en string y configurarlo como innerHTML en la visualización de comillas
+  quoteElement.innerHTML = spanWords.join('');
+  // Resalte la primera palabra
+  quoteElement.childNodes[0].className = 'highlight';
+  // Borrar cualquier mensaje anterior
+  messageElement.innerText = '';
+
+  // Configurar el cuadro de texto
+  // Limpiar el cuadro de texto
+  typedValueElement.value = '';
+  // Enfocar
+  typedValueElement.focus();
+  // Configurar el controlador de eventos
+
+  // Iniciar el cronómetro
+  startTime = new Date().getTime();
+});
+```
+
+- ¡Desglosemos el código!
+
+- Configurar el seguimiento de palabras
+Usar Math.floor y Math.random nos permite seleccionar aleatoriamente una cita de la matriz`quotes`.
+
+- Convertimos el `quote`en una matriz de `words`para que podamos rastrear la palabra que el jugador está escribiendo actualmente.
+
+- `wordIndex` se establece en 0, ya que el jugador comenzará con la primera palabra.
+
+- Configurar la interfaz de usuario
+- Crea una matriz de `spanWords`, que contiene cada palabra dentro de un `span` elemento.
+Esto nos permitirá resaltar la palabra en la pantalla.
+- La matriz `join`para crear una cadena que podemos usar para actualizar  `innerHTML` el `quoteElement`.
+Esto mostrará la cotización al jugador.
+- Establezca el `className` del primer `span` elemento para `highlight` resaltarlo en amarillo.
+- Limpie el `messageElement` configurando `innerText`en `''``
+- Configurar el cuadro de texto
+- Borrar la corriente `value` en `typedValueElement`
+- Establezca el `focus` en `typedValueElement`
+- Inicie el cronómetro llamando `getTime`.
+
+## Agregar lógica de escritura
+
+A medida que el jugador escriba, `input` se generará un evento. Este detector de eventos verificará que el jugador esté escribiendo la palabra correctamente y manejará el estado actual del juego. Volviendo a script.js , agregue el siguiente código al final. Lo desglosaremos después.
+
+```javascript
+// al final de script.js
+typedValueElement.addEventListener('input', () => {
+  // Obtener la palabra actual
+  const currentWord = words[wordIndex];
+  // Obtener el valor actual
+  const typedValue = typedValueElement.value;
+
+  if (typedValue === currentWord && wordIndex === words.length - 1) {
+    // final de la frase
+    // Mostrar éxito
+    const elapsedTime = new Date().getTime() - startTime;
+    const message = `CONGRATULATIONS! You finished in ${elapsedTime / 1000} seconds.`;
+    messageElement.innerText = message;
+  } else if (typedValue.endsWith(' ') && typedValue.trim() === currentWord) {
+    // Palabra final
+    // Borra el typedValueElement para la nueva palabra
+    typedValueElement.value = '';
+    // Pasar a la siguiente palabra
+    wordIndex++;
+    // restablecer el nombre de clase para todos los elementos entre comillas
+    for (const wordElement of quoteElement.childNodes) {
+      wordElement.className = '';
+    }
+    // Resaltar la nueva palabra 
+    quoteElement.childNodes[wordIndex].className = 'highlight';
+  } else if (currentWord.startsWith(typedValue)) {
+    // Actualmente correcta
+    // Resaltar la siquiente palabra 
+    typedValueElement.className = '';
+  } else {
+    // estado de error
+    typedValueElement.className = 'error';
+  }
+});
+```
+
+**¡Desglosemos el código!**
+
+Comenzamos tomando la palabra actual y el valor que el jugador ha escrito hasta el momento. Luego tenemos la lógica en cascada, donde verificamos si la cita está completa, la palabra está completa, la palabra es correcta o (finalmente), si hay un error.
+
+- La cita está completa, indicada por `typedValue` ser igual a `currentWord` y `wordIndex` ser igual a uno menos que el `length` de `words`.
+- Calcular `elapsedTime` restando `startTime` de la hora actual.
+- Divida `elapsedTime` por 1000 para convertir de milisegundos a segundos.
+- Mostrar un mensaje de éxito.
+- La palabra está completa, lo que se indica `typedValue` terminando con un espacio (el final de una palabra) y `typedValue` siendo igual `acurrentWord`.
+- Establezca `value` en `typedElement` ser `''` para permitir que se escriba la siguiente palabra.
+- Incremento `wordIndex` para pasar a la siguiente palabra.
+- Recorra todo `childNodes` para `quoteElement` configurar `classNamey` en `''` para volver a la visualización predeterminada.           
+- Establezca `className` la palabra actual para `highlight` marcarla como la siguiente palabra a escribir.
+- Actualmente, Word está escrito correctamente (pero no completo), indicado por que `currentWord` comienza con `typedValue`.
+- Asegúrese de que `typedValueElement` se muestre como predeterminado al borrar `className`.
+- Si llegamos hasta aquí, tenemos un error.
+- Establecer `className` en `typedValueElement` par `error`.
+
+## Pruebe su aplicación
+
+¡Has llegado al final! El último paso es asegurarnos de que nuestra aplicación funcione. ¡Comencemos! No te preocupes si hay errores; Todos los desarrolladores tienen errores. Examine los mensajes y depure según sea necesario.
+
+![Animacion](../clase12/TG.gif)
+
+Haga clic en Inicio y comience a escribir. Debería parecerse un poco a la animación que vimos antes.
+
+## 🚀 Desafío
+
+Agregar más funcionalidad
+
+- Deshabilite el inputdetector de eventos al finalizar y vuelva a habilitarlo cuando se haga clic en el botón
+- Deshabilite el cuadro de texto cuando el jugador complete la cita.
+- Mostrar un cuadro de diálogo modal con el mensaje de éxito.

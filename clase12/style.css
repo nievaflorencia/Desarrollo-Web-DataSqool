@@ -1,0 +1,9 @@
+/* No te olvides de poner el archivo style.css en el html */
+.highlight {
+    background-color: yellow;
+  }
+  
+.error {
+    background-color: lightcoral;
+    border: red;
+}
