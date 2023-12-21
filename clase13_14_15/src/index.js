@@ -1,4 +1,4 @@
-import axios from './node_modules/axios';
+import axios from 'axios';
 
 // Campo del formulario
 const form = document.querySelector('.form-data');
