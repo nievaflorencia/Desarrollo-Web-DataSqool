@@ -362,11 +362,11 @@ Construirás una página web con un elemento Canvas. Debería mostrar una panta
 
 - Nave héroe
     
-    ![Nave héroe](../clase16_17/assets/player.png)
+    ![Nave héroe](../clase16_17_18/assets/player.png)
     
 - 5*5 monstruo
     
-    ![Nave Monstruo](../clase16_17/assets/enemyShip.png)
+    ![Nave Monstruo](../clase16_17_18/assets/enemyShip.png)
     
 
 ### Pasos recomendados para iniciar el desarrollo
@@ -384,10 +384,10 @@ Localice los archivos que se han creado para usted. Debe contener lo siguiente:
 
 Abra la copia de esta carpeta en Visual Studio Code. Debe tener una configuración de entorno de desarrollo local, preferiblemente con Visual Studio Code con NPM y Node instalados. Si no lo ha `npm`configurado en su computadora, [aquí le mostramos cómo hacerlo](https://www.npmjs.com/get-npm) .
 
-Comience su proyecto navegando a la `juegoEspacial`carpeta:
+Comience su proyecto navegando a la carpeta`clase16_17_18`carpeta:
 
 ```bash
-cd juegoEspacial
+cd clase16_17_18
 npm start
 ```
 
@@ -398,7 +398,7 @@ Lo anterior iniciará un servidor HTTP en la dirección `http://localhost:5000`
 
 ### Agregar código
 
-Agregue el código necesario para `juegoEspacial/app.js`resolver lo siguiente
+Agregue el código necesario para `clase16_17_18/app.js`resolver lo siguiente
 
 1. **Dibuja** un lienzo con fondo negro.
     
@@ -442,3 +442,403 @@ Agregue el código necesario para `juegoEspacial/app.js`resolver lo siguiente
 El resultado final debería verse así:
 
 ![Ejemplo resultado primera parte](partI-solution.png)
+
+# Construir un juego espacial Parte 3: agregar movimiento
+
+¡Los juegos no son muy divertidos hasta que tienes extraterrestres corriendo en la pantalla! En este juego, haremos uso de dos tipos de movimientos:
+
+- **Movimiento de teclado/ratón**
+    
+    : cuando el usuario interactúa con el teclado o el ratón para mover un objeto en la pantalla.
+    
+- **Movimiento inducido por el juego**
+    
+    : cuando el juego mueve un objeto con un cierto intervalo de tiempo.
+    
+
+Entonces, ¿cómo movemos las cosas en una pantalla? Se trata de coordenadas cartesianas: cambiamos la ubicación (x, y) del objeto y luego volvemos a dibujar la pantalla.
+
+Por lo general, necesita los siguientes pasos para realizar *el movimiento* en una pantalla:
+
+1. **Establecer una nueva ubicación**
+    
+    para un objeto; esto es necesario para percibir que el objeto se ha movido.
+    
+2. **Borrar la pantalla**
+    
+    , la pantalla debe limpiarse entre cada juego. Podemos despejarlo dibujando un rectángulo que rellenamos con un color de fondo.
+    
+3. **Vuelva a dibujar el objeto**
+    
+    en la nueva ubicación. Al hacer esto, finalmente logramos mover el objeto de un lugar a otro.
+    
+
+Así es como puede verse en el código:
+
+```javascript
+//establecer la ubicación del héroe
+hero.x += 5;
+// Limpia el rectángulo que alberga al héroe.
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+// volver a dibujar el fondo y el héroe del juego
+ctx.fillRect(0, 0, canvas.width, canvas.height)
+ctx.fillStyle = "black";
+ctx.drawImage(heroImg, hero.x, hero.y);
+```
+
+✅¿Puedes pensar en una razón por la que volver a dibujar a tu héroe muchos fotogramas por segundo podría generar costos de rendimiento? Lea acerca de [las alternativas a este patrón](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Optimizing_canvas) .
+
+## Manejar eventos de teclado
+
+Maneja eventos adjuntando eventos específicos al código. Los eventos del teclado se activan en toda la ventana, mientras que los eventos del mouse, como un, `click`se pueden conectar al hacer clic en un elemento específico. Usaremos eventos de teclado a lo largo de este proyecto.
+
+Para manejar un evento, debe usar el método `addEventListener()` y proporcionarle dos parámetros de entrada. El primer parámetro es el nombre del evento, por ejemplo `keyup`. El segundo parámetro es la función que se debe invocar como resultado de que se produzca el evento.
+
+Aquí hay un ejemplo:
+
+```JavaScript
+window.addEventListener('keyup', (evt) => {
+  // `evt.key` = representación de cadena de la clave
+  if (evt.key === 'ArrowUp') {
+    // hacer algo
+  }
+})
+```
+
+Para eventos clave, hay dos propiedades en el evento que puede usar para ver qué tecla se presionó:
+
+- `key`
+    
+    , esta es una representación de cadena de la tecla presionada, por ejemplo `ArrowUp`
+    
+- `keyCode`
+    
+    , esta es una representación numérica, por ejemplo 37, corresponde a `ArrowLeft`.
+    
+
+✅La manipulación de eventos clave es útil fuera del desarrollo de juegos. ¿Qué otros usos se te ocurren para esta técnica?
+
+### Teclas especiales: una advertencia
+
+Hay algunas teclas *especiales* que afectan a la ventana. Eso significa que si estás escuchando un `keyup`evento y usas estas teclas especiales para mover a tu héroe, también realizará el desplazamiento horizontal. Por esa razón, es posible que desee *desactivar* este comportamiento integrado del navegador a medida que desarrolla su juego. Necesitas un código como este:
+
+```JavaScript
+let onKeyDown = function (e) {
+  console.log(e.keyCode);
+  switch (e.keyCode) {
+    case 37:
+    case 39:
+    case 38:
+    case 40: // Teclas de flechas
+    case 32: // Tecla espacio
+      e.preventDefault();
+      break; 
+    default:
+      break; // No bloquear otras claves
+  }
+};
+
+window.addEventListener('keydown', onKeyDown);
+```
+📢 más info sobre el objeto window
+- [window](https://developer.mozilla.org/es/docs/Web/API/Window)
+
+El código anterior garantizará que las teclas de flecha y la tecla de espacio tengan su comportamiento *predeterminado* desactivado. El mecanismo *de apagado* ocurre cuando llamamos `e.preventDefault()`.
+
+## Movimiento inducido por el juego
+
+Podemos hacer que las cosas se muevan solas usando temporizadores como la función `setTimeout()`o `setInterval()`que actualiza la ubicación del objeto en cada marca o intervalo de tiempo. Esto es lo que puede parecer:
+
+```JavaScript
+let id = setInterval(() => {
+  // Mueve al enemigo en el eje y
+  enemy.y += 10;
+})
+```
+
+## el bucle del juego
+
+El bucle del juego es un concepto que es esencialmente una función que se invoca a intervalos regulares. Se llama bucle de juego porque todo lo que debería ser visible para el usuario se dibuja en el bucle. El bucle del juego hace uso de todos los objetos del juego que forman parte del juego, dibujándolos todos a menos que por alguna razón ya no deban ser parte del juego. Por ejemplo, si un objeto es un enemigo que fue golpeado por un láser y explota, ya no forma parte del ciclo actual del juego (aprenderás más sobre esto en lecciones posteriores).
+
+Este es el aspecto típico de un bucle de juego, expresado en código:
+
+```JavaScript
+let gameLoopId = setInterval(() =>
+  function gameLoop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    drawHero();
+    drawEnemies();
+    drawStaticObjects();
+}, 200);
+```
+
+El bucle anterior se invoca cada `200`milisegundos para volver a dibujar el lienzo. Tienes la posibilidad de elegir el mejor intervalo que tenga sentido para tu juego.
+
+## Continuando con el juego espacial
+
+Tomará el código existente y lo ampliará. Comienza con el código que completaste durante la parte I o usa el código en la segunda parte.
+
+- **Mover al héroe**
+    
+    : agregará código para asegurarse de que puede mover al héroe con las teclas de flecha.
+    
+- **Mover enemigos**
+    
+    : también deberá agregar código para asegurarse de que los enemigos se muevan de arriba a abajo a un ritmo determinado.
+    
+
+## Pasos recomendados
+
+Localice los archivos que se han creado para usted . Debe contener lo siguiente:
+
+```bash
+-| assets
+  -| enemyShip.png
+  -| player.png
+-| index.html
+-| app.js
+-| package.json
+```
+
+Inicia su proyecto en la carpeta escribiendo:
+
+```bash
+cd clase16_17_18
+npm start
+```
+
+Lo anterior iniciará un servidor HTTP en la dirección `http://localhost:5000`. Abra un navegador e ingrese esa dirección, en este momento debería representar al héroe y a todos los enemigos; nada se mueve, ¡todavía!
+
+### Agregar código
+
+1. **Agregue objetos dedicados** para `hero`and `enemy`y `game object`, deben tener propiedades `x`y `y`. (Recordar la parte sobre Herencia o composición.
+    
+    *SUGERENCIA* `game object` debe ser el que tiene `x`y `y`la capacidad de dibujarse a sí mismo en un lienzo.
+    
+    > consejo: comience agregando una nueva clase GameObject con su constructor delineado como se muestra a continuación, y luego dibújelo en el lienzo:
+    > 
+    
+    ```JavaScript
+    class GameObject {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.dead = false;
+        this.type = "";
+        this.width = 0;
+        this.height = 0;
+        this.img = undefined;
+      }
+    
+      draw(ctx) {
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+      }
+    }
+    ```
+    
+    Ahora, extienda este GameObject para crear el Héroe y el Enemigo.
+    
+    ```JavaScript
+    class Hero extends GameObject {
+      constructor(x, y) {
+        ...it needs an x, y, type, and speed
+      }
+    }
+    ```
+    
+    ```JavaScript
+    class Enemy extends GameObject {
+      constructor(x, y) {
+        super(x, y);
+        (this.width = 98), (this.height = 50);
+        this.type = "Enemy";
+        let id = setInterval(() => {
+          if (this.y < canvas.height - this.height) {
+            this.y += 5;
+          } else {
+            console.log('Stopped at', this.y)
+            clearInterval(id);
+          }
+        }, 300)
+      }
+    }
+    ```
+    
+2. **Agregue controladores de eventos clave** para manejar la navegación clave (mover héroe arriba/abajo izquierda/derecha)
+    
+    *RECUERDE* que es un sistema cartesiano, arriba a la izquierda es `0,0`. También recuerde agregar código para detener *el comportamiento predeterminado*
+    
+    > consejo: cree su función onKeyDown y adjúntela a la ventana:
+    > 
+    
+    ```JavaScript
+     let onKeyDown = function (e) {
+           console.log(e.keyCode);
+             ...agregue el código de la lección anterior para detener
+             default behavior
+           }
+     };
+    
+     window.addEventListener("keydown", onKeyDown);
+    ```
+    
+    Verifique la consola de su navegador en este punto y observe cómo se registran las pulsaciones de teclas.
+    
+3. **Implemente** el patrón Pub/sub , esto mantendrá su código limpio mientras sigue las partes restantes.
+    
+    Para hacer esta última parte, puedes:
+    
+    1. **Agregue un detector de eventos** en la ventana:
+        
+        ```JavaScript
+         window.addEventListener("keyup", (evt) => {
+           if (evt.key === "ArrowUp") {
+             eventEmitter.emit(Messages.KEY_EVENT_UP);
+           } else if (evt.key === "ArrowDown") {
+             eventEmitter.emit(Messages.KEY_EVENT_DOWN);
+           } else if (evt.key === "ArrowLeft") {
+             eventEmitter.emit(Messages.KEY_EVENT_LEFT);
+           } else if (evt.key === "ArrowRight") {
+             eventEmitter.emit(Messages.KEY_EVENT_RIGHT);
+           }
+         });
+        ```
+        
+    2. **Crea una clase EventEmitter** para publicar y suscribirte a los mensajes:
+        
+        ```JavaScript
+        class EventEmitter {
+          constructor() {
+            this.listeners = {};
+          }
+        
+          on(message, listener) {
+            if (!this.listeners[message]) {
+              this.listeners[message] = [];
+            }
+            this.listeners[message].push(listener);
+          }
+        
+          emit(message, payload = null) {
+            if (this.listeners[message]) {
+              this.listeners[message].forEach((l) => l(message, payload));
+            }
+          }
+        }
+        ```
+        
+    3. **Agregue constantes** y configure EventEmitter:
+        
+        ```JavaScript
+        const Messages = {
+          KEY_EVENT_UP: "KEY_EVENT_UP",
+          KEY_EVENT_DOWN: "KEY_EVENT_DOWN",
+          KEY_EVENT_LEFT: "KEY_EVENT_LEFT",
+          KEY_EVENT_RIGHT: "KEY_EVENT_RIGHT",
+        };
+        
+        let heroImg,
+            enemyImg,
+            laserImg,
+            canvas, ctx,
+            gameObjects = [],
+            hero,
+            eventEmitter = new EventEmitter();
+        ```
+        
+    4. **Inicializar el juego**
+    
+    ```JavaScript
+    function initGame() {
+      gameObjects = [];
+      createEnemies();
+      createHero();
+    
+      eventEmitter.on(Messages.KEY_EVENT_UP, () => {
+        hero.y -=5 ;
+      })
+    
+      eventEmitter.on(Messages.KEY_EVENT_DOWN, () => {
+        hero.y += 5;
+      });
+    
+      eventEmitter.on(Messages.KEY_EVENT_LEFT, () => {
+        hero.x -= 5;
+      });
+    
+      eventEmitter.on(Messages.KEY_EVENT_RIGHT, () => {
+        hero.x += 5;
+      });
+    }
+    ```
+    
+4. **Configurar el bucle del juego**
+    
+    Refactorice la función window.onload para inicializar el juego y configurar un bucle de juego en un buen intervalo. También agregará un rayo láser:
+    
+    ```JavaScript
+    window.onload = async () => {
+      canvas = document.getElementById("canvas");
+      ctx = canvas.getContext("2d");
+      heroImg = await loadTexture("assets/player.png");
+      enemyImg = await loadTexture("assets/enemyShip.png");
+      laserImg = await loadTexture("assets/laserRed.png");
+    
+      initGame();
+      let gameLoopId = setInterval(() => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        drawGameObjects(ctx);
+      }, 100)
+    
+    };
+    ```
+    
+5. **Agregue código** para mover enemigos en un cierto intervalo
+    
+    Refactorice la `createEnemies()`función para crear los enemigos e introdúzcalos en la nueva clase gameObjects:
+    
+    ```JavaScript
+    function createEnemies() {
+      const MONSTER_TOTAL = 5;
+      const MONSTER_WIDTH = MONSTER_TOTAL * 98;
+      const START_X = (canvas.width - MONSTER_WIDTH) / 2;
+      const STOP_X = START_X + MONSTER_WIDTH;
+    
+      for (let x = START_X; x < STOP_X; x += 98) {
+        for (let y = 0; y < 50 * 5; y += 50) {
+          const enemy = new Enemy(x, y);
+          enemy.img = enemyImg;
+          gameObjects.push(enemy);
+        }
+      }
+    }
+    ```
+    
+    y agregue una `createHero()`función para hacer un proceso similar para el héroe.
+    
+    ```JavaScript
+    function createHero() {
+      hero = new Hero(
+        canvas.width / 2 - 45,
+        canvas.height - canvas.height / 4
+      );
+      hero.img = heroImg;
+      gameObjects.push(hero);
+    }
+    ```
+    
+    y finalmente, agregue una `drawGameObjects()`función para comenzar el dibujo:
+    
+    ```JavaScript
+    function drawGameObjects(ctx) {
+      gameObjects.forEach(go => go.draw(ctx));
+    }
+    ```
+    
+    ¡Tus enemigos deberían comenzar a avanzar en tu nave espacial heroica!
+
+
