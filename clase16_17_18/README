@@ -839,6 +839,507 @@ Lo anterior iniciará un servidor HTTP en la dirección `http://localhost:5000`
     }
     ```
     
-    ¡Tus enemigos deberían comenzar a avanzar en tu nave espacial heroica!
+    ## ¡Tus enemigos deberían comenzar a avanzar en tu nave espacial heroica! 🚀🚀
+
+  # Construir un juego espacial Parte 4: agregar un láser y detectar colisiones
+
+¡En esta lección aprenderá a disparar láseres con JavaScript! Agregaremos dos cosas a nuestro juego:
+
+- **Un láser**
+    
+    : este láser se dispara desde la nave de tus héroes y verticalmente hacia arriba.
+    
+- **Detección de colisión***disparar*
+    
+    , como parte de la implementación de la capacidad de
+    
+    , también agregaremos algunas reglas de juego agradables:
+    
+    - **El láser golpea al enemigo**
+        
+        : el enemigo muere si es golpeado por un láser.
+        
+    - **El láser golpea la pantalla superior**
+        
+        : un láser se destruye si golpea la parte superior de la pantalla
+        
+    - **Colisión de héroe y enemigo**
+        
+        : un enemigo y el héroe se destruyen si se golpean entre sí.
+        
+    - **El enemigo golpea la parte inferior de la pantalla**
+        
+        : un enemigo y un héroe son destruidos si el enemigo golpea la parte inferior de la pantalla.
+        
+
+En resumen, tú, *el héroe* , debes golpear a todos los enemigos con un láser antes de que logren moverse hacia la parte inferior de la pantalla.
+
+✅Investigue un poco sobre el primer juego de computadora jamás escrito. ¿Cuál era su funcionalidad?
+
+## Detección de colisiones
+
+¿Cómo hacemos la detección de colisiones? Necesitamos pensar en los objetos de nuestro juego como rectángulos que se mueven. ¿Por qué es así te preguntarás? Bueno, la imagen que se usa para dibujar un objeto de juego es un rectángulo: tiene `x`, y `y` `width` `height`
+
+Si dos rectángulos, es decir, un héroe y un enemigo *se cruzan* , tienes una colisión. Lo que debería suceder entonces depende de las reglas del juego. Por lo tanto, para implementar la detección de colisiones, necesita lo siguiente:
+
+1. Una forma de obtener una representación rectangular de un objeto del juego, algo como esto:
+    
+    ```JavaScript
+    rectFromGameObject() {
+      return {
+        top: this.y,
+        left: this.x,
+        bottom: this.y + this.height,
+        right: this.x + this.width
+      }
+    }
+    ```
+    
+2. Una función de comparación, esta función puede verse así:
+    
+    ```Javascript
+    function intersectRect(r1, r2) {
+      return !(r2.left > r1.right ||
+        r2.right < r1.left ||
+        r2.top > r1.bottom ||
+        r2.bottom < r1.top);
+    }
+    ```
+    
+
+## ¿Cómo destruimos las cosas?
+
+Para destruir cosas en un juego, debe informar al juego que ya no debe pintar este elemento en el ciclo del juego que se activa en un intervalo determinado. Una forma de hacer esto es marcar un objeto del juego como *muerto* cuando sucede algo, así:
+
+```JavaScript
+// ocurrió la colisión
+enemy.dead = true
+```
+
+Luego, puede proceder a clasificar los objetos *muertos* antes de volver a pintar la pantalla, así:
+
+```JavaScript
+gameObjects = gameObject.filter(go => !go.dead);
+```
+
+## ¿Cómo disparamos un láser?
+
+Disparar un láser se traduce en responder a un evento clave y crear un objeto que se mueve en una dirección determinada. Por lo tanto, debemos llevar a cabo los siguientes pasos:
+
+1. **Crea un objeto láser**
+    
+    : desde la parte superior de la nave de nuestro héroe, que al crearse comienza a moverse hacia arriba, hacia la parte superior de la pantalla.
+    
+2. **Adjuntar código a un evento clave**
+    
+    : debemos elegir una tecla en el teclado que represente al jugador disparando el láser.
+    
+3. **Crea un objeto de juego que parece un láser**
+    
+    cuando se presiona la tecla.
+    
+
+## Enfriamiento en nuestro láser
+
+El láser debe dispararse cada vez que presiona una tecla, como *espacio* , por ejemplo. Para evitar que el juego produzca demasiados láseres en poco tiempo, debemos solucionar este problema. La solución es implementar un llamado *enfriamiento* , un temporizador, que garantiza que un láser solo se pueda disparar con cierta frecuencia. Puedes implementar eso de la siguiente manera:
+
+```JavaScript
+class Cooldown {
+  constructor(time) {
+    this.cool = false;
+    setTimeout(() => {
+      this.cool = true;
+    }, time)
+  }
+}
+
+class Weapon {
+  constructor {
+  }
+  fire() {
+    if (!this.cooldown || this.cooldown.cool) {
+      // Producir un láser
+      this.cooldown = new Cooldown(500);
+    } else {
+      // no hagas nada, todavía no se ha enfriado.
+    }
+  }
+}
+```
+
+✅Consulte la lección 1 de la serie de juegos espaciales para recordar los *tiempos de reutilización* .
+
+## que construir
+
+Tomará el código existente (que debería haber limpiado y refactorizado) de la lección anterior y lo ampliará. Empiece con el código de la Parte II o utilice el código de la Parte III
+
+> consejo: el láser con el que trabajará ya está en su carpeta de activos y su código hace referencia a él
+> 
+
+- **Agregue detección de colisión**
+    
+    , cuando un láser colisiona con algo, se deben aplicar las siguientes reglas:
+    
+    1. **El láser golpea al enemigo**
+        
+        : el enemigo muere si es golpeado por un láser.
+        
+    2. **Laser hits top screen**
+        
+        : Un láser se destruye si golpea la parte superior de nuestra pantalla
+        
+    3. **Colisión de héroe y enemigo**
+        
+        : un enemigo y el héroe se destruyen si se golpean entre sí
+        
+    4. **El enemigo golpea la parte inferior de la pantalla**
+        
+        : un enemigo y un héroe se destruyen si el enemigo golpea la parte inferior de la pantalla.
+        
+
+## Pasos recomendados
+
+Localice los archivos que se han creado para usted. Debe contener lo siguiente:
+
+```bash
+-| assets
+  -| enemyShip.png
+  -| player.png
+  -| laserRed.png
+-| index.html
+-| app.js
+-| package.json
+```
+
+Inicia su proyecto en la carpeta`juegoEspacial` escribiendo:
+
+```
+cd juegoEspacial
+npm start
+```
+
+Lo anterior iniciará un servidor HTTP en la dirección `http://localhost:5000`. Abra un navegador e ingrese esa dirección, en este momento debería representar al héroe y a todos los enemigos, nada se mueve, todavía :).
+
+### Agregar código
+
+1. **Configure una representación rectangular de su objeto de juego, para manejar la colisión.** 
+
+El siguiente código le permite obtener una representación rectangular de un archivo `GameObject`. Edite su clase GameObject para ampliarla:
+
+    ```JavaScript
+    rectFromGameObject() {
+        return {
+          top: this.y,
+          left: this.x,
+          bottom: this.y + this.height,
+          right: this.x + this.width,
+        };
+      }
+    ```
+    
+2. **Agregue código que verifique la colisión** Esta será una nueva función que prueba si dos rectángulos se cruzan:
+    
+    ```JavaScript
+    function intersectRect(r1, r2) {
+      return !(
+        r2.left > r1.right ||
+        r2.right < r1.left ||
+        r2.top > r1.bottom ||
+        r2.bottom < r1.top
+      );
+    }
+    ```
+    
+3. **Agregar capacidad de disparo láser**
+    1. **Agregar mensaje de evento clave** 
+    La tecla *de espacio* debería crear un láser justo encima de la nave del héroe. Agregue tres constantes en el objeto Messages:
+        
+        ```JavaScript
+         KEY_EVENT_SPACE: "KEY_EVENT_SPACE",
+         COLLISION_ENEMY_LASER: "COLLISION_ENEMY_LASER",
+         COLLISION_ENEMY_HERO: "COLLISION_ENEMY_HERO",
+        ```
+        
+    2. **Maneja la tecla de espacio** . Edite la `window.addEventListener`función keyup para manejar espacios:
+        
+        ```JavaScript
+          } else if(evt.keyCode === 32) {
+            eventEmitter.emit(Messages.KEY_EVENT_SPACE);
+          }
+        ```
+        
+    3. **Añadir oyentes** . Edite la `initGame()`función para asegurarse de que el héroe pueda disparar cuando presione la barra espaciadora:
+        
+        ```JavaScript
+        eventEmitter.on(Messages.KEY_EVENT_SPACE, () => {
+         if (hero.canFire()) {
+           hero.fire();
+         }
+        ```
+        
+        y agrega una nueva `eventEmitter.on()`función para garantizar el comportamiento cuando un enemigo choca con un láser:
+        
+        ```JavaScript
+        eventEmitter.on(Messages.COLLISION_ENEMY_LASER, (_, { first, second }) => {
+          first.dead = true;
+          second.dead = true;
+        })
+        ```
+        
+    4. **Mueva el objeto** , asegúrese de que el láser se mueva hacia la parte superior de la pantalla gradualmente. Creará una nueva clase de láser que se extienda `GameObject`, como lo ha hecho antes:
+        
+        ```JavaScript
+          class Laser extends GameObject {
+          constructor(x, y) {
+            super(x,y);
+            (this.width = 9), (this.height = 33);
+            this.type = 'Laser';
+            this.img = laserImg;
+            let id = setInterval(() => {
+              if (this.y > 0) {
+                this.y -= 15;
+              } else {
+                this.dead = true;
+                clearInterval(id);
+              }
+            }, 100)
+          }
+        }
+        ```
+        
+    5. **Manejar colisiones** , implementar reglas de colisión para el láser. Agregue una `updateGameObjects()`función que pruebe los objetos que chocan en busca de aciertos.
+        
+        ```JavaScript
+        function updateGameObjects() {
+          const enemies = gameObjects.filter(go => go.type === 'Enemy');
+          const lasers = gameObjects.filter((go) => go.type === "Laser");
+        // el láser golpeó algo
+          lasers.forEach((l) => {
+            enemies.forEach((m) => {
+              if (intersectRect(l.rectFromGameObject(), m.rectFromGameObject())) {
+              eventEmitter.emit(Messages.COLLISION_ENEMY_LASER, {
+                first: l,
+                second: m,
+              });
+            }
+           });
+        });
+        
+          gameObjects = gameObjects.filter(go => !go.dead);
+        }
+        ```
+        
+        Asegúrate de agregar `updateGameObjects()`a tu bucle de juego en formato `window.onload`.
+        
+    6. **Implemente el enfriamiento** en el láser, por lo que solo se puede disparar con cierta frecuencia.
+        
+        Finalmente, edite la clase Hero para que pueda enfriarse:
+        
+        ```JavaScript
+        class Hero extends GameObject {
+         constructor(x, y) {
+           super(x, y);
+           (this.width = 99), (this.height = 75);
+           this.type = "Hero";
+           this.speed = { x: 0, y: 0 };
+           this.cooldown = 0;
+         }
+         fire() {
+           gameObjects.push(new Laser(this.x + 45, this.y - 10));
+           this.cooldown = 500;
+        
+           let id = setInterval(() => {
+             if (this.cooldown > 0) {
+               this.cooldown -= 100;
+             } else {
+               clearInterval(id);
+             }
+           }, 200);
+         }
+         canFire() {
+           return this.cooldown === 0;
+         }
+        }
+        ```
+        
+
+¡En este punto, tu juego tiene algunas funciones! Puedes navegar con las teclas de flecha, disparar un láser con la barra espaciadora y los enemigos desaparecen cuando los golpeas. ¡Bien hecho!
+
+
+# Construyendo un juego espacial Parte 5: Puntuación y vidas
+
+## Dibujar texto en la pantalla
+
+Para poder mostrar la puntuación de un juego en la pantalla, deberá saber cómo colocar texto en la pantalla. La respuesta está usando el método `fillText()` en el objeto de canvas. También puedes controlar otros aspectos como qué fuente usar, el color del texto e incluso su alineación (izquierda, derecha, centro). A continuación se muestra un código que dibuja un texto en la pantalla.
+
+```Javascript
+ctx.font = "30px Arial";
+ctx.fillStyle = "red";
+ctx.textAlign = "right";
+ctx.fillText("show this on the screen", 0, 0);
+```
+
+✅Lea más sobre [cómo agregar texto a canvas](https://developer.mozilla.org/docs/Web/API/Canvas_API/Tutorial/Drawing_text) y siéntase libre de hacer que el suyo se vea más elegante.
+
+## La vida, como concepto de juego
+
+El concepto de tener una vida en un juego es solo un número. En el contexto de un juego espacial, es común asignar un conjunto de vidas que se restan una por una cuando tu nave sufre daños. Es bueno si puedes mostrar una representación gráfica de esto como minibarcos o corazones en lugar de un número.
+
+## que construir
+
+Agreguemos lo siguiente a su juego:
+
+- **Puntuación del juego**
+    
+    : Por cada barco enemigo que se destruya, el héroe debe recibir algunos puntos, sugerimos 100 puntos por barco. La puntuación del juego debe mostrarse en la parte inferior izquierda.
+    
+- **Vida**
+    
+    : Tu barco tiene tres vidas. Pierdes una vida cada vez que un barco enemigo choca contigo. Una puntuación de vida debe mostrarse en la parte inferior derecha y estar hecha a partir del siguiente gráfico
+    
+- [life](../JuegoEspacial/assets/life.png)
+    
+    
+    
+
+## Pasos recomendados
+
+Localice los archivos que se han creado para usted en la carpeta `juegoEspacial`. Debe contener lo siguiente:
+
+```bash
+-| assets
+  -| enemyShip.png
+  -| player.png
+  -| laserRed.png
+-| index.html
+-| app.js
+-| package.json
+```
+
+Inicia su proyecto en la carpeta `juegoEspacial`escribiendo:
+
+```bash
+cd juegoEspacial
+npm start
+```
+
+Lo anterior iniciará un servidor HTTP en la dirección `http://localhost:5000`. Abra un navegador e ingrese esa dirección, en este momento debería representar al héroe y a todos los enemigos, y cuando presiona las flechas izquierda y derecha, el héroe se mueve y puede derribar a los enemigos.
+
+### Agregar código
+
+1. **Copie los activos necesarios** de la carpeta`assets` a la carpeta `juegoEspacial`; agregará un activo `life.png`. Agregue lifeImg a la función window.onload:
+    
+    ```javascript
+    lifeImg = await loadTexture("assets/life.png");
+    ```
+    
+2. Agregue el `lifeImg`a la lista de activos:
+    
+    ```javascript
+    let heroImg,
+    ...
+    lifeImg,
+    ...
+    eventEmitter = new EventEmitter();
+    ```
+    
+3. **Añadir variables** . Agregue un código que represente su puntaje total (0) y las vidas restantes (3), muestre estos puntajes en una pantalla.
+
+
+4. **Ampliar la función`updateGameObjects()`** . Extienda la `updateGameObjects()`función para manejar las colisiones enemigas:
+    
+    ```javascript
+    enemies.forEach(enemy => {
+        const heroRect = hero.rectFromGameObject();
+        if (intersectRect(heroRect, enemy.rectFromGameObject())) {
+          eventEmitter.emit(Messages.COLLISION_ENEMY_HERO, { enemy });
+        }
+      })
+    ```
+    
+5. **Agregar `life`y`points`** .
+    1. **Inicializar variables** . Debajo `this.cooldown = 0`de la clase `Hero`, establezca la vida y los puntos:
+        
+        ```javascript
+        this.life = 3;
+        this.points = 0;
+        ```
+        
+    2. **Dibujar variables en pantalla** . Dibuje estos valores en la pantalla:
+        
+        ```javascript
+        function drawLife() {
+          // TODO, 35, 27
+          const START_POS = canvas.width - 180;
+          for(let i=0; i < hero.life; i++ ) {
+            ctx.drawImage(
+              lifeImg,
+              START_POS + (45 * (i+1) ),
+              canvas.height - 37);
+          }
+        }
+        
+        function drawPoints() {
+          ctx.font = "30px Arial";
+          ctx.fillStyle = "red";
+          ctx.textAlign = "left";
+          drawText("Points: " + hero.points, 10, canvas.height-20);
+        }
+        
+        function drawText(message, x, y) {
+          ctx.fillText(message, x, y);
+        }
+        ```
+        
+    3. **Agregue métodos a Game loop** . Asegúrese de agregar estas funciones a su función window.onload en `updateGameObjects()`:
+        
+        ```javascript
+        drawPoints();
+        drawLife();
+        ```
+        
+6. **Implementar reglas de juego** . Implemente las siguientes reglas del juego:
+    1. **Por cada colisión de héroe y enemigo** , resta una vida.
+        
+        Extiende la clase `Hero` para hacer esta deducción:
+        
+        ```javaScript
+        decrementLife() {
+          this.life--;
+          if (this.life === 0) {
+            this.dead = true;
+          }
+        }
+        ```
+        
+    2. **Por cada láser que golpea a un enemigo** , aumenta la puntuación del juego en 100 puntos.
+        
+        Extiende la clase Hero para hacer este incremento:
+        
+        ```javascript
+          incrementPoints() {
+            this.points += 100;
+          }
+        ```
+        
+        Agregue estas funciones a sus emisores de eventos de colisión:
+        
+        ```javascript
+        eventEmitter.on(Messages.COLLISION_ENEMY_LASER, (_, { first, second }) => {
+           first.dead = true;
+           second.dead = true;
+           hero.incrementPoints();
+        })
+        
+        eventEmitter.on(Messages.COLLISION_ENEMY_HERO, (_, { enemy }) => {
+           enemy.dead = true;
+           hero.decrementLife();
+        });
+        ```
+        
+
+✅Investigue un poco para descubrir otros juegos creados con JavaScript/Canvas. ¿Cuáles son sus rasgos comunes?
+
+Al final de este trabajo, deberías ver las pequeñas naves de 'vida' en la parte inferior derecha, los puntos en la parte inferior izquierda, y deberías ver que tu recuento de vidas disminuye a medida que chocas con los enemigos y tus puntos aumentan cuando disparas a los enemigos. ¡Bien hecho! Tu juego está casi completo.
 
 
