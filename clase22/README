@@ -1,0 +1,169 @@
+## Felicidades estamos llegando al final del curso ##
+
+**Clase 22 - Recursos y práctica para continuar aprendiendo desarrollo web**
+
+LLegamos al punto donde nuestras habilidades técnicas o hardSkills comenzarán a notarse, escribimos nuestro primer **Hola Mundo!**, nos interiorizamos sobre cómo trabajar con Git & Github, nos adentramos en proyectos como nuestro terrario virtual, un juego de mecanografía para practicar y para divertirnos creamos un juego espacial para poder matar a esas naves enemigas. Espero todo esto haya sido de su agrado, recuerden que una vez que nos iniciamos en este mundo mantenernos aprendiendo o innovando son algunas de las reglas que siempre debemos considerar, lo que hoy estamos aprendiendo quizás en un tiempo encontremos nuevas alternativas o actualizaciones que poner en práctica. Pero no se olviden de cuidar su salud mental, no permitan que un bug los frene, salgan a dar una vuelta, acariciar a su mascota o conversar con algún ser querido! 
+
+Pero esto no será todo, las últimas clases vamos a abordar algunos de los temas que todo Dev tiene que considerar. Perdón no lo dije antes...  👨‍💻👩‍🎓**Felicidades ya eres un Dev!**👨‍💻👩‍🎓 
+
+En estas clases vamos a considerar todas o algunas de las habilidades que debemos tener como desarrolladores, para comenzar vamos a ver algunos modelos de portfolio, una de las cartas de presentación de un desarrollador, y si digo una dado que también no debemos olvidarnos de nuestro perfil en LinkedIn, nuestro README de presentación en GitHub, y ni hablar de las redes sociales que podemos usar a nuestro favor en caso de que exploremos otras áreas o lanzar nuestra propia marca personal. 
+
+
+## Portfolio ##
+
+Un portfolio, en el contexto del desarrollo web (o en cualquier otro campo creativo o profesional), es una colección de trabajos, proyectos, habilidades y experiencias que una persona recopila y presenta de manera organizada y accesible. En el caso de un desarrollador web, un portfolio generalmente incluirá:
+
+**Proyectos**: Muestra de sitios web, aplicaciones o cualquier otro trabajo en el que hayas trabajado. Puede ser desde proyectos personales hasta trabajos para clientes o empleadores anteriores.
+
+**Habilidades técnicas**: Lista de habilidades específicas que posees, como lenguajes de programación, frameworks, herramientas y tecnologías que dominas.
+
+**Experiencia laboral**: Si has trabajado en roles relacionados con el desarrollo web, puedes incluir detalles sobre estas experiencias.
+
+**Educación y certificaciones**: Detalles sobre tu formación académica, cursos relevantes que hayas realizado y cualquier certificación que respalde tus habilidades.
+
+**Información personal**: Una breve biografía o descripción personal puede agregar un toque humano y mostrar tu personalidad a quienes visiten tu portfolio.
+
+Un portfolio puede presentarse de diferentes maneras como un sitio web personal, un perfil en plataformas especializadas, un documento PDF descargable, entre otros formatos. La clave es mostrar tu mejor trabajo de manera clara y atractiva, brindando una visión completa de quién eres como profesional del desarrollo web.
+
+
+Ahora veamos algunos ejemplos: 
+
+- [PortfolioSimple](https://youtu.be/ssEiM3zyN08?si=aG6o6vor7LgqJj9w)
+- [RevisionPortfolio](https://youtu.be/mfjpijMwIp8?si=kthkZhFCXyva-6TF)
+
+## LinkedIn ##
+
+Al crear y mantener un perfil sólido en LinkedIn, puedes aumentar tus oportunidades de networking, conexión con reclutadores y conseguir ofertas laborales en el campo del desarrollo web.
+
+Aquí tienes un resumen de algunos consejos clave para armar un perfil efectivo de LinkedIn para un desarrollador:
+
+**Encabezado claro y atractivo**: Utiliza un titular profesional que describa claramente tu especialidad y experiencia en desarrollo web.
+
+**Foto de perfil profesional**: Una imagen clara y profesional es crucial. Sonríe y mantén un aspecto adecuado para el ámbito profesional.
+
+**Resumen destacado**: Escribe un resumen conciso pero completo sobre tu experiencia, habilidades y lo que te apasiona en el desarrollo web.
+
+**Detalles específicos sobre habilidades**: Enumera las habilidades técnicas clave que posees, como lenguajes de programación, frameworks, herramientas y metodologías que dominas.
+
+**Experiencia laboral relevante**: Detalla tus roles anteriores relacionados con el desarrollo web, incluyendo logros y proyectos destacados.
+
+**Educación y certificaciones**: Menciona tu formación académica, cursos relevantes y certificaciones que respalden tus habilidades.
+
+**Portafolio y proyectos**: Incluye enlaces a tu portfolio, GitHub u otros proyectos significativos que hayas desarrollado.
+
+**Recomendaciones y testimonios**: Pide a colegas o supervisores anteriores que dejen testimonios sobre tu trabajo para agregar credibilidad a tu perfil.
+
+**Participación en la comunidad**: Únete a grupos relacionados con el desarrollo web, participa en debates y comparte contenido relevante para demostrar tu interés y conocimiento en el campo.
+
+**Mantén tu perfil actualizado**: A medida que adquieras nuevas habilidades o experiencias, asegúrate de reflejar estos cambios en tu perfil.
+
+
+- [ReaccionandoLinkedIn](https://youtu.be/wq17ap6pIQY?si=iBSGxAdJFRVyRuz4)
+
+## GitHub ##
+
+Un README es una excelente manera de presentarte en GitHub. Aquí tienes algunos consejos para crear un README efectivo que destaque tus habilidades y proyectos. Un README bien estructurado y completo puede ser una excelente herramienta para mostrar tu experiencia, habilidades y proyectos a cualquier persona que visite tu perfil de GitHub.
+
+**Título claro y atractivo**: Incluye tu nombre y una breve descripción que resuma tu experiencia o especialidad, por ejemplo: "Desarrollador Full-Stack apasionado por la creación de aplicaciones web interactivas".
+
+**Descripción personal**: Una breve introducción sobre ti, tu enfoque en el desarrollo y tus pasiones en el ámbito tecnológico.
+
+**Habilidades técnicas destacadas**: Enumera las habilidades clave que posees, incluyendo lenguajes de programación, frameworks, herramientas y metodologías en las que eres experto.
+
+**Enlaces relevantes**: Agrega enlaces a tu portfolio, sitio web personal, blog o redes sociales profesionales para que los visitantes puedan conocer más sobre ti.
+
+**Proyectos destacados**: Destaca algunos de tus proyectos más impresionantes o relevantes. Incluye una breve descripción de cada uno y, si es posible, agrega enlaces a los repositorios correspondientes o a las páginas web donde se puedan ver en acción.
+
+**Instrucciones de instalación o uso**: Si es relevante para tus proyectos, proporciona instrucciones claras sobre cómo instalar o usar tu código.
+
+**Contribuciones y colaboraciones**: Anima a otros desarrolladores a contribuir o colaborar en tus proyectos si estás abierto a ello. Incluye pautas o información sobre cómo pueden hacerlo.
+
+**Contacto**: Proporciona información de contacto como tu correo electrónico o enlaces a perfiles de redes sociales profesionales para que las personas puedan comunicarse contigo.
+
+**Licencia**: Especifica la licencia bajo la cual se comparte tu código si es relevante para el proyecto.
+
+**Mantenlo actualizado**: Asegúrate de actualizar tu README periódicamente para reflejar tus proyectos más recientes y cualquier cambio relevante en tu perfil profesional.
+
+Aquí hay algunos ejemplos de cómo podrías potenciar tu GitHub y un paso a paso para optimizarlo: 
+
+- [Ejemplos](https://github.com/abhisheknaiidu/awesome-github-profile-readme)
+- [![README](https://i.ytimg.com/vi/1eEnboVooiY/hqdefault_12900.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBDTSLscOD3EWuYbObERt2imEijvQ)](https://www.youtube.com/live/1eEnboVooiY?si=7a5YzXXwDQx6Xihl)
+
+
+>
+Consejo: 
+
+¿Por qué son necesarios estas herramientas para un desarrollador? 
+
+En conjunto, LinkedIn, GitHub y un portfolio bien desarrollado son herramientas poderosas para establecer tu presencia profesional en línea, mostrar tu experiencia y habilidades, y conectar con oportunidades laborales en el campo del desarrollo web.
+
+¿Qué tiene que ver con la dinámica de nuestro curso? 
+
+Pues en nuestra próxima y última clase haremos una simulación de entrevistas, con revisión de CV, perfil en LinkedIn y si contamos con un portfolio también vamos a compartir el mismo. Prepararse para una simulación de entrevistas de desarrollador web requiere práctica, conocimiento técnico y habilidades de comunicación efectiva. La combinación de estos elementos te ayudará a destacar durante la entrevista.
+>
+
+
+
+## Recursos ##
+
+En nuestra anterior clase creamos un proyecto del juego espacial, pero el día de hoy compartiré con ustedes algunos de los recursos para continuar aprendiendo!!. 
+
+
+Vamos a ver estos desafíos: 
+
+- [![50projects](https://50projects50days.com/img/projects-img/13-random-choice-picker.png)](https://github.com/bradtraversy/50projects50days/tree/master)
+
+
+- [FullstackOpen](https://fullstackopen.com/en/)
+
+- [AprendiendoTodo](https://learn-anything.xyz/)
+
+- [JugandoAprendo](https://codingfantasy.com/)
+
+- [TypingClub](https://www.typingclub.com/)
+
+- [Ejercicios](https://leetcode.com/)
+
+- [JavaScript30](https://javascript30.com/)
+
+- [CodeCombat](https://codecombat.com/)
+
+
+
+## Tarea: Preparación para la Simulación de Entrevistas ##
+¡Felicitaciones por tu participación en la clase de hoy! Como preparación para la próxima sesión, te proporciono estos recursos para optimizar y practicar tus habilidades para las simulaciones de entrevistas:
+
+
+**CV (Currículum Vitae):**
+
+- Revisa y actualiza tu CV para reflejar tus habilidades y experiencias relevantes para el desarrollo web.
+- Asegúrate de estructurarlo de manera clara y concisa, resaltando logros y habilidades específicas.
+- Incluye palabras clave relevantes para la industria y adaptado a la posición que buscas.
+
+
+**Portfolio:**
+
+- Actualiza y mejora tu portfolio con proyectos relevantes y variados que muestren tus habilidades y capacidades en el desarrollo web.
+- Destaca los desafíos abordados, soluciones implementadas y resultados obtenidos en cada proyecto.
+- Mejora el diseño y la usabilidad para una presentación visualmente atractiva y fácil de navegar.
+
+
+**LinkedIn:**
+
+- Completa y actualiza tu perfil de LinkedIn con información detallada sobre tu experiencia, habilidades y educación relacionadas con el desarrollo web.
+- Usa palabras clave relevantes y describe tus logros de manera clara y cuantificable.
+- Conéctate con profesionales de la industria, únete a grupos relevantes y comparte contenido relacionado para establecer una presencia activa.
+
+
+**Tips adicionales:**
+-Para el CV: Sé conciso y enfócate en logros y habilidades relevantes para la posición que buscas. Usa un formato claro y profesional.
+
+-Para el Portfolio: Destaca la diversidad de tus proyectos, muestra desafíos superados y resultados logrados. Diseña una experiencia agradable para el usuario.
+
+-Para LinkedIn: Sé completo en tu perfil, usa palabras clave específicas y participa activamente en la plataforma para expandir tu red y visibilidad.
+
+>
+¡Estos recursos te ayudarán a optimizar tus herramientas clave para la búsqueda de empleo en el desarrollo web! Estaré disponible para aclarar dudas o brindarte orientación adicional si es necesario. ¡Éxito en tu preparación para las simulaciones de entrevistas!
+>
+
+
