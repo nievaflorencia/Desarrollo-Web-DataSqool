@@ -1,0 +1,182 @@
+## Bienvenidos a nuestra última clase en DataSqool ##
+
+## Clase 23 y 24: Simulación de entrevistas para Devs! ##
+
+¡Bienvenidos a la clase de hoy sobre desarrollo web y preparación para el mundo laboral! En nuestra sesión anterior, exploramos elementos clave para construir un perfil profesional sólido como desarrollador web. Repasamos cómo optimizar nuestros perfiles en LinkedIn, CV y portfolio para destacar en la industria.
+
+Recapitulando algunos puntos esenciales:
+
+**LinkedIn:** Hablamos sobre la importancia de completar cada sección de tu perfil, usar palabras clave relevantes y participar activamente en la red para expandir tu alcance profesional.
+
+**CV (Currículum Vitae):** Discutimos cómo estructurar y destacar logros, habilidades y experiencias relevantes para el desarrollo web. La claridad y relevancia son clave aquí.
+
+**Portfolio:** Analizamos cómo mejorar la presentación de tus proyectos, resaltando desafíos superados y resultados obtenidos para mostrar tu capacidad técnica y creativa.
+
+Hoy, daremos un paso más allá. Comenzaremos con la revisión individual de los perfiles profesionales de cada uno de ustedes. Analizaremos sus CVs, portfolios y perfiles de LinkedIn para identificar áreas de mejora y fortalezas.
+
+Después de esta revisión, nos sumergiremos en un simulacro de entrevistas técnicas. Esta simulación nos brindará la oportunidad de poner a prueba nuestras habilidades, comunicación y capacidad para resolver problemas en un entorno similar al de una entrevista laboral.
+
+Así que, ¡prepárense para una sesión práctica e informativa! Comenzaremos con la revisión detallada de sus perfiles y luego nos adentraremos en la emocionante simulación de entrevistas técnicas. ¡Adelante y demos inicio a una clase productiva y enriqueceSdora!
+
+
+## Trainee, Junior, SemiSenior
+
+Es importante destacar que las líneas entre estos niveles pueden variar según la empresa y el sector. Además, la comunicación efectiva, la colaboración en equipo y la capacidad para aprender y adaptarse son habilidades valiosas en todos los niveles de senioridad. La progresión de un nivel a otro generalmente se basa en la experiencia acumulada, la responsabilidad asumida y la demostración continua de habilidades y competencias en el desarrollo web.
+
+**Trainee:**
+
+- Descripción: Los Trainees son desarrolladores en formación que están en las etapas iniciales de su carrera.
+  - Ejemplos de Habilidades:
+    - Conocimiento básico de HTML, CSS y JavaScript.
+    - Capacidad para trabajar en proyectos simples bajo supervisión.
+    - Familiaridad con conceptos fundamentales de desarrollo web.
+
+**Junior:**
+
+- Descripción: Los desarrolladores Junior tienen experiencia básica y pueden trabajar de manera más independiente en proyectos menos complejos.
+  - Ejemplos de Habilidades:
+    - Experiencia práctica en el desarrollo de sitios web.
+    - Competencia en el manejo de tareas más complejas con HTML, CSS y JavaScript.
+    - Conocimiento de frameworks o bibliotecas básicas como React o Bootstrap.
+
+**Semi-senior:**
+
+- Descripción: Los desarrolladores Semi-senior tienen experiencia sustancial y son capaces de liderar proyectos más desafiantes.
+  - Ejemplos de Habilidades:
+    - Amplia experiencia en el desarrollo de aplicaciones web complejas.
+    - Conocimientos profundos de JavaScript y su aplicación en frameworks como React, Angular o Vue.
+    - Habilidad para diseñar arquitecturas de software eficientes y escalables.
+    - Experiencia en la resolución de problemas y optimización de rendimiento.
+
+
+
+## Revisión 
+
+En esta oportunidad vamos a ver una revisión de un CV, en muchos casos donde más nos comenzamos a confundir o no saber cómo hacer una descripción de nuestro perfil. 
+
+- ![Ejemplo 1](ejemplo1.png)
+
+- ![Ejemplo 2](ejemplo2.png)
+
+
+## ENTREVISTA GENERAL 
+
+**Entrevistador:** Bueno, gracias por venir el día hoy. ¿Cómo estás? 
+
+**Candidato:** ¡Hola! Estoy emocionado/a por la oportunidad. Gracias por la invitación a participar en el proceso de selección.
+
+**Entrevistador:** Claro, el placer es nuestro. Comencemos con algo básico. ¿Puedes hablarme un poco sobre tu experiencia con HTML, CSS y JavaScript?
+
+**Candidato:** Por supuesto. Durante mi formación y proyectos académicos, trabajé extensamente con HTML y CSS para crear estructuras de página y estilos atractivos. Además, utilicé JavaScript para añadir interactividad a mis proyectos, como una calculadora y una aplicación del clima.
+
+**Entrevistador:** Excelente. ¿Puedes compartir un proyecto específico en el que hayas utilizado estas tecnologías y de cuál te sientes más orgulloso/a?
+
+**Candidato:** Claro, uno de mis proyectos más destacados fue la aplicación del clima que mencioné anteriormente. Utilicé JavaScript para conectarme a una API de pronóstico del tiempo, y luego diseñé la interfaz utilizando HTML y CSS. Fue un desafío emocionante porque no solo mejoré mis habilidades técnicas, sino que también aprendí a trabajar con datos en tiempo real y a crear una experiencia de usuario atractiva.
+
+**Entrevistador:** Suena impresionante. ¿Cómo manejas los problemas de compatibilidad entre navegadores al desarrollar aplicaciones web?
+
+**Candidato:** Enfrenté problemas de compatibilidad en varios proyectos. Para abordarlos, adopté enfoques como la realización de pruebas exhaustivas en diferentes navegadores y la aplicación de soluciones específicas para cada caso. Además, sigo las mejores prácticas y estoy al tanto de las actualizaciones para garantizar la compatibilidad a largo plazo.
+
+**Entrevistador:** Buen enfoque. Cambiando un poco de tema, ¿cómo te mantienes actualizado/a sobre las últimas tendencias y novedades en el desarrollo web?
+
+**Candidato:** Me mantengo activo/a en comunidades en línea como Stack Overflow y Medium. Además, sigo blogs y participo en conferencias web cuando es posible. Estoy constantemente explorando nuevas tecnologías y buscando maneras de mejorar mis habilidades.
+
+**Entrevistador:** Eso suena muy bien. Por último, ¿puedes hablarnos de un desafío específico que hayas enfrentado en un proyecto y cómo lo resolviste?
+
+**Candidato:** Claro, en un proyecto reciente, tuve que optimizar el rendimiento de una aplicación que experimentaba problemas de carga. Realicé una profunda revisión del código, identifiqué áreas de mejora y apliqué técnicas de optimización. También implementé la carga diferida de recursos para mejorar la velocidad de carga. Después de estas modificaciones, logramos una mejora significativa en el rendimiento de la aplicación.
+
+**Entrevistador:** Excelente trabajo al abordar ese desafío. Eso es todo por mi parte. ¿Tienes alguna pregunta para nosotros?
+
+**Candidato:** Sí, me gustaría saber más sobre el equipo y los proyectos actuales en los que podríamos trabajar.
+
+**Entrevistador:** Por supuesto, estaré encantado de hablar sobre eso. Gracias por venir hoy. Estaremos en contacto pronto.
+
+**Candidato:** Gracias a ustedes. ¡Espero tener noticias suyas!
+
+
+
+## Entrevista TÉCNICA
+
+Estas preguntas son solo ejemplos y pueden ajustarse según las necesidades específicas de la posición y la empresa. Recuerda que la clave es evaluar no solo el conocimiento técnico, sino también las habilidades de resolución de problemas, comunicación y trabajo en equipo del candidato.
+
+**Entrevista Técnica para el Rol de Desarrollador Web: Trainee/Junior**
+
+Pregunta 1: HTML y CSS
+
+- Pregunta: ¿Cómo implementarías un diseño responsivo en un sitio web? Proporciona ejemplos específicos de media queries.
+    - Esperado:
+        - La comprensión de la importancia del diseño responsivo.
+        - Ejemplos de media queries y cómo se aplican para adaptar el diseño en diferentes dispositivos.
+
+
+Pregunta 2: JavaScript Fundamentals
+
+- Pregunta: Explícame el concepto de "hoisting" en JavaScript y proporciona un ejemplo práctico.
+    - Esperado:
+        - Conocimiento del comportamiento de hoisting en JavaScript.
+        - La capacidad para explicar y demostrar cómo funciona en un código específico.
+
+
+Pregunta 3: JavaScript - Manipulación del DOM
+
+- Pregunta: Describe cómo agregar y eliminar elementos del DOM utilizando JavaScript. Proporciona un ejemplo práctico.
+    - Esperado:
+        - Conocimiento de cómo manipular el DOM con JavaScript.
+        - Ejemplos de código que ilustren la adición y eliminación de elementos del DOM.
+
+
+Pregunta 4: Frameworks de JavaScript
+
+- Pregunta: ¿Tienes experiencia con algún framework de JavaScript, como React o Angular? Si es así, describe un proyecto específico en el que hayas utilizado uno de estos frameworks.
+    - Esperado:
+        - Conocimiento de al menos un framework de JavaScript.
+        - La capacidad para hablar sobre proyectos específicos y cómo el framework se utilizó para abordar desafíos.
+
+
+Pregunta 5: Resolución de Problemas
+
+- Pregunta: Imagina que un sitio web carga lentamente. ¿Cómo abordarías este problema y qué pasos seguirías para optimizar el rendimiento?
+    - Esperado:
+        - Habilidad para identificar posibles causas de lentitud en un sitio web.
+        - Conocimiento de estrategias y técnicas para mejorar el rendimiento.
+
+
+Pregunta 6: Control de Versiones
+
+- Pregunta: ¿Cuál es la importancia del control de versiones en el desarrollo web? ¿Has utilizado Git en proyectos anteriores?
+    - Esperado:
+        Comprensión de la importancia del control de versiones.
+        Experiencia práctica con Git y la capacidad para explicar cómo se utiliza en un entorno de desarrollo.
+
+
+Pregunta 7: Trabajo en Equipo y Comunicación
+
+- Pregunta: Háblame sobre un proyecto en el que trabajaste en equipo. ¿Cómo te comunicaste y coordinaste con tus compañeros para lograr los objetivos del proyecto?
+    - Esperado:
+        - Experiencia en trabajo colaborativo.
+        - Habilidad para describir cómo contribuiste al éxito del equipo.
+
+
+
+## Recursos para practicar entrevistas
+
+- [WarmUp](https://grow.google/certificates/interview-warmup/)
+- [FullstackCafe](https://www.fullstack.cafe/)
+
+## Empresas para enviar tu CV 
+
+- [Empresas](https://github.com/nievaflorencia/Empresas-Autocandidatura)
+- [Empresas2](https://github.com/nievaflorencia/Auto-Candidatura)
+
+
+## Saludos Finales 
+
+**!Felicidades por haber finalizado con éxito este curso de desarrollo web!**
+
+- ![Felicidades](https://images.unsplash.com/photo-1507652955-f3dcef5a3be5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZmluYWxpemFjaSVDMyVCM24lMjBjdXJzb3xlbnwwfHwwfHx8MA%3D%3D)
+
+Les deseo mucho éxito en sus futuros proyectos y trayectorias profesionales. Estoy seguro/a de que llevarán consigo no solo el conocimiento técnico adquirido, sino también la capacidad de enfrentar nuevos desafíos con confianza y determinación.
+
+Gracias nuevamente por su participación y dedicación. ¡Fue un honor ser su instructor y les deseo lo mejor en sus futuros emprendimientos en el mundo del desarrollo web!
+
+Atentamente Nieva Florencia!

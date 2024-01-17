@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Galería de Imágenes</title>
+</head>
+<body>
+
+<div class="gallery-container">
+    <div class="thumbnail" onclick="showImage('')">
+        <img src="./image1.jpg" alt="Thumbnail 1">
+    </div>
+    <div class="thumbnail" onclick="showImage('image2.jpg')">
+        <img src="./image2.jpg" alt="Thumbnail 2">
+    </div>
+    <!-- Agregar más miniaturas según sea necesario -->
+</div>
+
+<div class="full-image-container" id="fullImageContainer">
+    <span class="close-button" onclick="closeImage()">X</span>
+    <img src="./image1.jpg" alt="Full Image" id="fullImage">
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
